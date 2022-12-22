@@ -13,10 +13,10 @@
             <nav>
                 <ul class="action">
                     <li>
-                        <button class="add">Save</button>
+                        <button class="add" id="save">Save</button>
                     </li>
                     <li>
-                        <button class="cancel">Cancel</button>
+                        <button class="cancel" onclick="history.back()">Cancel</button>
                     </li>
                 </ul>
             </nav>
@@ -27,17 +27,17 @@
     <form class="input">
         <div>
         <label for="sku">SKU:</label>
-        <input type="text" name="sku" placeholder="#SKU">
+        <input id="sku" type="text" name="sku" placeholder="#SKU">
         </div>
 
         <div>
         <label for="name">Name:</label>
-        <input type="text" name="name" placeholder="#name">
+        <input id="name" type="text" name="name" placeholder="#name">
         </div>
 
         <div>
         <label for="price">Price ($):</label>
-        <input type="text" name="price" placeholder="#price">
+        <input id="price" type="text" name="price" placeholder="#price">
         </div>
 
         <div class="switcher">
