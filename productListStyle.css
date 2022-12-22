@@ -1,0 +1,86 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 20px;
+    margin: 15px;
+    margin-bottom: 5px;
+}
+
+h1{
+    font-weight: lighter;
+}
+
+.action{
+    list-style: none;
+    align-items: center;
+}
+
+.action li{
+    display: inline-block;
+}
+
+.action li a{
+    text-decoration: none;
+    width: 60px;
+    height: 40px;
+    margin: 10px;
+    padding: 10px;
+    background-color: rgb(0, 79, 183);
+    color: black;
+    border-radius: 10px;
+    font-weight: bold;
+}
+
+.action li button{
+    width: 120px;
+    height: 40px;
+    margin: 10px;
+    padding: 10px;
+    color: black;
+    background-color: red;
+    border-radius: 10px;
+    border: none;
+    font-weight: bold;
+    font-size: smaller;
+}
+
+hr{
+    width: 90%;
+    margin: auto;
+}
+
+.listView{
+    padding: 5px;
+    margin: 5px;
+}
+
+.productList{
+    margin-left: 60px;
+    margin-right: 60px;
+}
+
+.item{
+    width: 200px;
+    height: 200px;
+    border: 3px;
+    margin: 5px;
+    border: solid 1px;
+    border-radius: 10px;
+    display: inline-block;
+}
+
+.item input{
+    margin: 10px;
+}
+
+p{
+    text-align: center;
+    padding: 5px;
+    margin-top: 7px;
+}
