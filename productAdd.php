@@ -56,7 +56,7 @@
             <div class="dvd-mem", id="dvd">
                 <p>DVD-disc</p>
                 <label for="dvd-memory">Size(MB):</label>
-                <input type="text" name="dvd-memory" placeholder="Please enter MB amount here">
+                <input id="dvd-memory" type="text" name="dvd-memory" placeholder="Please enter MB amount here">
                 <p>Please enter amount of disc memory in MB.</p>
             </div>
 
@@ -65,17 +65,17 @@
 
                 <div>
                 <label for="height">Height(CM):</label>
-                <input type="text" name="height" placeholder="Enter height in here">
+                <input id="height" type="text" name="height" placeholder="Enter height in here">
                 </div>
 
                 <div>
                 <label for="width">Width(CM):</label>
-                <input type="text" name="width" placeholder="Enter width in here">
+                <input id="width" type="text" name="width" placeholder="Enter width in here">
                 </div>
 
                 <div>
                 <label for="lenght">Height(CM):</label>
-                <input type="text" name="lenght" placeholder="Enter lenght in here">
+                <input id="lenght" type="text" name="lenght" placeholder="Enter lenght in here">
                 </div>
 
                 <p>Please enter all dimensions of furniture</p>
@@ -84,7 +84,7 @@
             <div class="book" id="book">
                 <p>Book</p>
                 <label for="weight">Weight(KG):</label>
-                <input type="text" name="weight" placeholder="Please enter weight in KG">
+                <input id="weight" type="text" name="weight" placeholder="Please enter weight in KG">
                 <p>Please enter weight of book</p>
             </div>
 
