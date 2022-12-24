@@ -2,6 +2,8 @@ const selector = document.getElementById("select");
 const save = document.getElementById("save");
 const switcher = null;
 
+
+//Logic handler for switcher type, so the correct window is displayed.
 selector.addEventListener('change', (event) =>{
     const dvd = document.getElementById("dvd");
     const furniture = document.getElementById("furniture");
@@ -9,25 +11,29 @@ selector.addEventListener('change', (event) =>{
 
     this.switcher = event.target.value;
 
-    if(event.target.value != null){
+    if(this.switcher != null){
         dvd.style.display = 'none'; 
         furniture.style.display = 'none'; 
         book.style.display = 'none'; 
-    }   
+    } 
 
-    switch(event.target.value){
-        case "dvd":
-           dvd.style.display = 'block'; 
-           break;
-        case "furniture":
-            furniture.style.display = 'block';
-            break;
-        case "book":
-            book.style.display = 'block';
-            break;
+    //Object literal gets called each time event happens, and returns new value of view.
+    const SwitcherView = {
+        dvd: function (){
+            dvd.style.display = "block"
+        },
+        furniture: function(){
+            furniture.style.display = "block"
+        },
+        book: function(){
+            book.style.display = "block"
+        }
     }
+
+    SwitcherView[this.switcher]();  
 });
 
+//Function validates input fields, so they would match requested.
 save.addEventListener("click", (event) => {
     event.preventDefault()
     const sku = document.getElementById("sku").value;
@@ -42,17 +48,35 @@ function validateFields(sku, name, price){
     let validate = /^[A-Za-z\s0-9]*$/;
     let validatePrice = /^[0-9]+(\.[0-9]+)?$/;
 
+
+    //Function check for correct input with .value() call
+    //If it returns 'true' it proceedss with further validation of additional fields that change dynamically.
+    //When all fields have passed validation function begins to POST FormData to PHP file for backend work.
     if(validate.test(sku) && validate.test(name) && validatePrice.test(price)){
         if(validateAdditional(this.switcher)){
-            alert("Done");
-            form.reset()
-            history.back();
+            let xml = new XMLHttpRequest();
+            xml.open("POST", "./backend/networkCalls.php", true);
+            xml.onload = () => {
+                if(xml.readyState == 4 && xml.status == 200){
+                    let response = xml.response;
+                    
+                }
+            };
+            let formData = new FormData(form);
+            xml.send(formData);
+
+            // alert("Done");
+            // form.reset()
+            // history.back();
         }
     }else{
         alert("Please check if there is not any spaces or special characters added");
     }
 }
 
+//Function validates field/fields by users input choice.
+//Object SwitcherValidation() takes functions input to manage whitch view currently is displayed
+//And then from either returns 'true' to proceed or an alert.
 function validateAdditional(type){
     const dvdMemory = document.getElementById("dvd-memory").value;
     const height = document.getElementById("height").value;
@@ -62,16 +86,17 @@ function validateAdditional(type){
 
     const validate =/^[0-9]+(\.[0-9]+)?$/;
 
-    if(type == null){
-        alert("Please select type for product input.");
+    const SwitcherValidation = {
+        dvd: function(){
+            return validate.test(dvdMemory) ? true : alert("Incorrect MB memmory input");
+        },
+        furniture: function(){
+            return validate.test(height) && validate.test(width) && validate.test(lenght) ? true : alert("Please check all entered dimensions for furniture.");
+        },
+        book: function(){
+            return validate.test(weight) ? true : alert("Please enter correct value for weight.");
+        }
     }
 
-    switch(type){
-        case "dvd":
-            return validate.test(dvdMemory) ? true : alert("Incorrect MB memmory input");
-        case "furniture":
-            return validate.test(height) && validate.test(width) && validate.test(lenght) ? true : alert("Please check all entered dimensions for furniture.");
-        case "book":
-            return validate.test(weight) ? true : alert("Please enter correct value for weight.");
-    }
+    SwitcherValidation[type]();
 }
