@@ -1,6 +1,6 @@
 const selector = document.getElementById("select");
 const save = document.getElementById("save");
-const switcher = null;
+const switcher = "";
 
 
 //Logic handler for switcher type, so the correct window is displayed.
@@ -48,27 +48,31 @@ function validateFields(sku, name, price){
     let validate = /^[A-Za-z\s0-9]*$/;
     let validatePrice = /^[0-9]+(\.[0-9]+)?$/;
 
+    const FileSelection = {
+        dvd : "backend/dvdProduct.php",
+        furniture : "backend/furniProduct.php",
+        book : "backend/bookProduct.php"
+    }
 
     //Function check for correct input with .value() call
     //If it returns 'true' it proceedss with further validation of additional fields that change dynamically.
     //When all fields have passed validation function begins to POST FormData to PHP file for backend work.
     if(validate.test(sku) && validate.test(name) && validatePrice.test(price)){
-        if(validateAdditional(this.switcher)){
+        //if(validateAdditional(this.switcher)){
             let xml = new XMLHttpRequest();
-            xml.open("POST", "./backend/networkCalls.php", true);
+            xml.open("POST", FileSelection[this.switcher], true);
             xml.onload = () => {
                 if(xml.readyState == 4 && xml.status == 200){
                     let response = xml.response;
-                    
+                    alert(response);
+                    form.reset()
+                    history.back();
                 }
-            };
+            }
+            console.log(form);
             let formData = new FormData(form);
             xml.send(formData);
-
-            // alert("Done");
-            // form.reset()
-            // history.back();
-        }
+       //}
     }else{
         alert("Please check if there is not any spaces or special characters added");
     }

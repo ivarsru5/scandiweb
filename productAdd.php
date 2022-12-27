@@ -24,7 +24,7 @@
 
     <hr>
 
-    <form class="input">
+    <form class="input" method="post">
         <div>
         <label for="sku">SKU:</label>
         <input id="sku" type="text" name="sku" placeholder="#SKU">
