@@ -66,7 +66,7 @@ function validateFields(sku, name, price){
                     let response = xml.response;
                     alert(response);
                     form.reset()
-                    history.back();
+                    window.location.replace("productList.php");
                 }
             }
             console.log(form);

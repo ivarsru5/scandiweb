@@ -16,7 +16,7 @@
                     <a href="./productAdd.php">Add</a>
                 </li>
                 <li>
-                    <button>Mass Delite</button>
+                    <button id="delete">Mass Delite</button>
                 </li>
             </ul>
         </nav>
@@ -24,65 +24,8 @@
 
     <hr>
 
-    <div class="listView">
-        <ul class="productList">
-            <li class="item">
-                <input type="checkbox">
-                <p>SKU</p>
-                <p>Name</p>
-                <p>Price</p>
-                <p>Specific</p>
-            </li>
-            <li class="item">
-                <input type="checkbox">
-                <p>SKU</p>
-                <p>Name</p>
-                <p>Price</p>
-                <p>Specific</p>
-            </li>
-            <li class="item">
-                <input type="checkbox">
-                <p>SKU</p>
-                <p>Name</p>
-                <p>Price</p>
-                <p>Specific</p>
-            </li>
-            <li class="item">
-                <input type="checkbox">
-                <p>SKU</p>
-                <p>Name</p>
-                <p>Price</p>
-                <p>Specific</p>
-            </li>
-            <li class="item">
-                <input type="checkbox">
-                <p>SKU</p>
-                <p>Name</p>
-                <p>Price</p>
-                <p>Specific</p>
-            </li>
-            <li class="item">
-                <input type="checkbox">
-                <p>SKU</p>
-                <p>Name</p>
-                <p>Price</p>
-                <p>Specific</p>
-            </li>
-            <li class="item">
-                <input type="checkbox">
-                <p>SKU</p>
-                <p>Name</p>
-                <p>Price</p>
-                <p>Specific</p>
-            </li>
-            <li class="item">
-                <input type="checkbox">
-                <p>SKU</p>
-                <p>Name</p>
-                <p>Price</p>
-                <p>Specific</p>
-            </li>
-        </ul>
+    <div id="listView" class="listView">
     </div>
+    <script src="./productListScript.js"></script>
 </body>
 </html>

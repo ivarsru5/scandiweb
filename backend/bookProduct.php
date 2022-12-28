@@ -1,6 +1,11 @@
 <?php
 include_once("networking.php");
 
+//By opening ajax from 'addProductScript.js' recive four values
+//Whitch are injected in SQL query.
+//While ajax monitors for reaponse from global variable 'echo'
+//And before instering checks is SKU already exists in SQL
+
 $sku = $_POST['sku'];
 $name = $_POST['name'];
 $price = $_POST['price'];
@@ -21,12 +26,14 @@ class BookProduct extends DatabaseCalls{
     }
 
     public function insertQuery(){
-        $sql = "INSERT INTO book (SKU, Name, Price, Weight)
+        $sql = "INSERT INTO book (SKU, Name, Price, Spec)
         VALUES ('$this->sku', '$this->name', '$this->price', '$this->weight')";
 
-        $this->insertData($sql);
+        $sqlCheck = ("SELECT * FROM book WHERE SKU = '$this->sku'");
+
+        $this->insertData($sql, $sqlCheck);
     }  
 }
 
-$dvdProduct = new BookProduct($sku, $name, $price, $weight);
-$dvdProduct->insertQuery();
+$bookProduct = new BookProduct($sku, $name, $price, $weight);
+$bookProduct->insertQuery();

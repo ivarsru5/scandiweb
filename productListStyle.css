@@ -56,26 +56,33 @@ hr{
 }
 
 .listView{
+    display: block;
     padding: 5px;
     margin: 5px;
 }
 
-.productList{
+.listView ul{
+    max-height: 250px;
+    display: flex;
+    overflow-x: auto;
     margin-left: 60px;
     margin-right: 60px;
+    list-style: none;
 }
 
-.item{
-    width: 200px;
-    height: 200px;
-    border: 3px;
-    margin: 5px;
+.listView ul::-webkit-scrollbar{
+    display: none;
+}
+
+.listView ul li{
+    min-width: 200px;
+    height: 180px;
+    margin: 10px;
     border: solid 1px;
     border-radius: 10px;
-    display: inline-block;
 }
 
-.item input{
+.listView ul li input{
     margin: 10px;
 }
 

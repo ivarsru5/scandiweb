@@ -1,4 +1,6 @@
 <?php
+//This would be endpoint of all classes where thay take all network calls
+//I would have joined classes 
 
 class DatabaseCalls{
     private $connection;
@@ -7,16 +9,32 @@ class DatabaseCalls{
         $this->connection = new mysqli("localhost", "root", "","scandiweb");
     }
 
-    public function insertData($dataQuery){
+    public function insertData($dataQuery, $searchQuery){
         if(!$this->connection){
             die("Connection failed" . $this->connection->connect_error);
         }
 
-        if($this->connection->query($dataQuery)){
-            echo "Done";
+        $check = $this->connection->query($searchQuery);
+        if($check->num_rows == 0){
+            if($this->connection->query($dataQuery)){
+                echo "Done";
+            }else{
+                echo "Error: " . $dataQuery . "<br>" . $this->connection->error;
+            }
         }else{
-            echo "Error: " . $dataQuery . "<br>" . $this->connection->error;
+            echo "SKU already exists!!!";
         }
         $this->connection->close();
+    }
+
+    public function getData($sqlQuery){
+        $query;
+        if(!$this->connection){
+            die("Connection failed" . $this->connection->connect_error);
+        }
+
+        $query = $this->connection->query($sqlQuery);
+        $this->connection->close();
+        return $query;
     }
 }

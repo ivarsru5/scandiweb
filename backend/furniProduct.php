@@ -1,6 +1,10 @@
 <?php
 include_once("networking.php");
 
+//By opening ajax from 'addProductScript.js' recive six values
+//and then by given dimensions from user function joins in one input.
+//And before instering checks is SKU already exists in SQL
+
 $sku = $_POST['sku'];
 $name = $_POST['name'];
 $price = $_POST['price'];
@@ -29,12 +33,14 @@ class FurniProduct extends DatabaseCalls{
     public function insertQuery(){
         $dimensions = $this->height . 'x' . $this->width . 'x' . $this->lenght;
 
-        $sql = "INSERT INTO furni (SKU, Name, Price, dimensions)
+        $sql = "INSERT INTO furni (SKU, Name, Price, Spec)
         VALUES ('$this->sku', '$this->name', '$this->price', '$dimensions')";
 
-        $this->insertData($sql);
+        $sqlCheck = ("SELECT * FROM furni WHERE SKU = '$this->sku'");
+
+        $this->insertData($sql, $sqlCheck);
     }  
 }
 
-$dvdProduct = new FurniProduct($sku, $name, $price, $height, $width, $lenght);
-$dvdProduct->insertQuery();
+$furniProduct = new FurniProduct($sku, $name, $price, $height, $width, $lenght);
+$furniProduct->insertQuery();

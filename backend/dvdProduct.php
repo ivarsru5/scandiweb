@@ -1,6 +1,10 @@
 <?php
 include_once("networking.php");
 
+//By opening ajax from 'addProductScript.js' recive four values
+//Whitch are injected in SQL query.
+//While ajax monitors for reaponse from global variable 'echo'
+
 $sku = $_POST['sku'];
 $name = $_POST['name'];
 $price = $_POST['price'];
@@ -21,10 +25,12 @@ class DvdProduct extends DatabaseCalls{
     }
 
     public function insertQuery(){
-        $sql = "INSERT INTO dvd (SKU, Name, Price, Memory)
+        $sql = "INSERT INTO dvd (SKU, Name, Price, Spec)
         VALUES ('$this->sku', '$this->name', '$this->price', '$this->memory')";
 
-        $this->insertData($sql);
+        $sqlCheck = ("SELECT * FROM dvd WHERE SKU = '$this->sku'");
+
+        $this->insertData($sql, $sqlCheck);
     }  
 }
 
