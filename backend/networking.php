@@ -37,4 +37,11 @@ class DatabaseCalls{
         $this->connection->close();
         return $query;
     }
+
+    public function deleteData($sqlQuery){
+        if(!$this->connection){
+            die("Connection failed" . $this->connection->connect_error);
+        }
+        $this->connection->query($sqlQuery);
+    }
 }
