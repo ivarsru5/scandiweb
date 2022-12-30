@@ -49,9 +49,9 @@ function validateFields(sku, name, price){
     let validatePrice = /^[0-9]+(\.[0-9]+)?$/;
 
     const FileSelection = {
-        dvd : "backend/dvdProduct.php",
-        furniture : "backend/furniProduct.php",
-        book : "backend/bookProduct.php"
+        dvd : "backend/dvdClass.php",
+        furniture : "backend/furniClass.php",
+        book : "backend/bookClass.php"
     }
 
     //Function check for correct input with .test() call
@@ -63,9 +63,6 @@ function validateFields(sku, name, price){
             xml.open("POST", FileSelection[this.switcher], true);
             xml.onload = () => {
                 if(xml.readyState == 4 && xml.status == 200){
-                    let response = xml.response;
-                    alert(response);
-                    form.reset()
                     window.location.replace("productList.php");
                 }
             }

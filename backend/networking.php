@@ -1,7 +1,8 @@
 <?php
-//This would be endpoint of all classes where thay take all network calls
-//I would have joined classes 
 
+//This would be endpoint of all classes where thay take all network calls
+//And inject in SQL query's. The main variable is always initilized,
+//So we would not get error on trying to connect to SQL
 class DatabaseCalls{
     private $connection;
 

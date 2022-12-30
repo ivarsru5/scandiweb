@@ -3,16 +3,16 @@ const massDelite = document.getElementById("delete");
 window.addEventListener("load", function(){
     //At this point function calls asynchronously should append new <ul> to table with 'appendChild()' method
     //as it inserts new element at the last index.
-    ajaxCall("backend/dvdTable.php", 'dvdList', 'dvdProducts', 'Memory (MB): ', function(){
-        ajaxCall("backend/furniTable.php", 'furniList', 'furniProducts', 'Dimensions: ', function(){
-            ajaxCall("backend/bookTable.php", 'bookList', 'bookProducts', 'Wight (KG): ', function(){
+    ajaxCall("backend/dvdClass.php", 'dvdList', 'dvdProducts', 'Memory (MB): ', function(){
+        ajaxCall("backend/furniClass.php", 'furniList', 'furniProducts', 'Dimensions: ', function(){
+            ajaxCall("backend/bookClass.php", 'bookList', 'bookProducts', 'Wight (KG): ', function(){
                 return;
             });
         });
     });
 });
 
-massDelite.addEventListener("click", (event) => {
+massDelite.addEventListener("click", () => {
     let dvdDel = [];
     let furniDel = [];
     let bookDel = [];
@@ -24,17 +24,17 @@ massDelite.addEventListener("click", (event) => {
         switch(ul.className){
             case "dvdList":
                 collectDelited(ul, dvdDel);
-                openAjaxOnDelite("backend/dvdTable.php",dvdDel);
+                openAjaxOnDelite("backend/dvdClass.php",dvdDel);
                 console.log(dvdDel);
                 break;
             case "furniList":
                 collectDelited(ul, furniDel);
-                openAjaxOnDelite("backend/furniTable.php", furniDel);
+                openAjaxOnDelite("backend/furniClass.php", furniDel);
                 console.log(furniDel);
                 break;
             case "bookList":
                 collectDelited(ul, bookDel);
-                openAjaxOnDelite("backend/bookTable.php", bookDel);
+                openAjaxOnDelite("backend/bookClass.php", bookDel);
                 console.log(bookDel);
                 break
         }

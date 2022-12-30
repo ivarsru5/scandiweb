@@ -74,7 +74,7 @@
                 </div>
 
                 <div>
-                <label for="lenght">Height(CM):</label>
+                <label for="lenght">Lenght(CM):</label>
                 <input id="lenght" type="text" name="lenght" placeholder="Enter lenght in here">
                 </div>
 
