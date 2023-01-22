@@ -1,5 +1,5 @@
 <?php
-include_once("networking.php");
+include_once("DatabaseCalls.php");
 
 
 //The main enpoint off all product classes, to take base of Product boject.
@@ -47,11 +47,11 @@ class Product extends DatabaseCalls{
         $resultQuery = $this->getData($sqlQuery);
 
         if($resultQuery->num_rows > 0){
-            $bookProducts = array();
+            $products = array();
             while($row = $resultQuery->fetch_assoc()){
-                $bookProducts[] = $row;
+                $products[] = $row;
             }
-            echo json_encode($bookProducts);
+            return json_encode($products);
         }
     }
 

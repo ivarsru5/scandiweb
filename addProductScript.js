@@ -50,7 +50,7 @@ function validateFields(sku, name, price){
 
     const FileSelection = {
         dvd : "backend/dvdClass.php",
-        furniture : "backend/furniClass.php",
+        furniture : "backend/Furni.php",
         book : "backend/bookClass.php"
     }
 
