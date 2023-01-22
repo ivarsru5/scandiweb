@@ -51,7 +51,7 @@ class Product extends DatabaseCalls{
             while($row = $resultQuery->fetch_assoc()){
                 $products[] = $row;
             }
-            return json_encode($products);
+            return $products;
         }
     }
 

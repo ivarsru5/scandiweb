@@ -2,41 +2,87 @@
 error_reporting(E_ALL);
 ini_set("display_errors","On");
 
-switch($_GET['action']){
+if(isset($_POST['dvd-memory'])){
+    include_once('backend/Dvd.php');
 
-    case 'retrive_table':
-        switch($_GET['table']){
+    $sku = $_POST['sku'];
+    $name = $_POST['name'];
+    $price = $_POST['price'];
+    $memory = $_POST['dvd-memory'];
 
-            case "get_furni":
-                include_once('backend/Furni.php');
-                $result = getFurni();
-                return $result;
-                break;
+    $dvd = new Dvd($sku, $name, $price, $memory, 'dvd');
+    $dvd->insertQuery($memory);
 
-            case 'get_book':
-                include_once('backend/Book.php');
-                getBook();
-                break;
-            
-            case 'get_dvd':
-                include_once('backend/Dvd.php');
-                getDvd();
-                break;
-        }
-        break;
+}else if (isset($_POST['height'])){
+    include_once('backend/Furni.php');
+
+    $sku = $_POST['sku'];
+    $name = $_POST['name'];
+    $price = $_POST['price'];
+    $height = $_POST['height'];
+    $width = $_POST['width'];
+    $lenght = $_POST['lenght'];
+
+    $furni = new Furni($sku, $name, $price, $height, $width, $lenght, 'furni');
+    $furni->insertFurniQuery($height, $width, $lenght);
+
+}else if(isset($_POST['weight'])){
+    include_once('backend/Book.php');
+
+    $sku = $_POST['sku'];
+    $name = $_POST['name'];
+    $price = $_POST['price'];
+    $weight = $_POST['weight'];
+
+    $book = new Book($sku, $name, $price, $weight, 'book');
+    $book->insertQuery($weight);
 }
 
-function getFurni(){
-    $furniRet = new Furni(null, null, null, null, null, null, 'furni');
-    return $furniRet->retriveTableData();
+if(isset($_GET['action'])){
+    switch($_GET['action']){
+        case 'get_dvd':
+            include_once('backend/Dvd.php');
+            $dvdRet = new Dvd(null, null, null, null, 'dvd');
+            $response = $dvdRet->retriveTableData();
+            echo json_encode($response);
+            break;
+
+        case 'get_furni':
+            include_once('backend/Furni.php');
+            $furniRet = new Furni(null, null, null, null, null, null, 'furni');
+            $response = $furniRet->retriveTableData();
+            echo json_encode($response);
+            break;
+
+        case 'get_book':
+            include_once('backend/Book.php');
+            $bookRet = new Book(null, null, null, null, 'book');
+            $response = $bookRet->retriveTableData();
+            echo json_encode($response);
+    }
 }
 
-function getBook(){
-    $bookRet = new Book(null, null, null, null, 'book');
-    $bookRet->retriveTableData();
-}
+$data = file_get_contents("php://input");
+$data = json_decode($data);
 
-function getDvd(){
-    $dvdRet = new Dvd(null, null, null, null, 'dvd');
-    $dvdRet->retriveTableData();
+if (isset($_POST['delete'])){
+    switch($_POST['delete']){
+        case 'del_dvd':
+            include_once('backend/Dvd.php');
+            $dvdDel = new Dvd(null, null, null, null, 'dvd');
+            $dvdDel->deleteProduct($data);
+            break;
+        
+        case 'del_furni':
+            include_once('backend/Furni.php');
+            $furniDel = new Furni(null, null, null, null, null, null, 'furni');
+            $furniDel->deleteProduct($data);
+            break;
+        
+        case 'del_book':
+            include_once('backend/Book.php');
+            $bookDel = new Book(null, null, null, null, 'book');
+            $bookDel->deleteProduct($data);
+            break;
+    }
 }

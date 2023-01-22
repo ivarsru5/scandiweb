@@ -1,9 +1,6 @@
 <?php
 include_once("Product.php");
 
-// $data = file_get_contents("php://input");
-// $data = json_decode($data);
-
 class Furni extends Product{
     private $height;
     private $width;
@@ -16,22 +13,3 @@ class Furni extends Product{
         $this->lenght = $lenght;
     }
 }
-
-// if(isset($_POST['sku'])){
-//     $sku = $_POST['sku'];
-//     $name = $_POST['name'];
-//     $price = $_POST['price'];
-//     $height = $_POST['height'];
-//     $width = $_POST['width'];
-//     $lenght = $_POST['lenght'];
-
-//     $furni = new Furni($sku, $name, $price, $height, $width, $lenght, 'furni');
-
-//     $furni->insertFurniQuery($height, $width, $lenght);
-// }else if($data === null){
-//     $furniRet = new Furni(null, null, null, null, null, null, 'furni');
-//     $furniRet->retriveTableData();
-// }else{
-//     $furniDel = new Furni(null, null, null, null, null, null, 'furni');
-//     $furniDel->deleteProduct($data);
-// }

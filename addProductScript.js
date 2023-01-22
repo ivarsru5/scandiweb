@@ -48,19 +48,13 @@ function validateFields(sku, name, price){
     let validate = /^[A-Za-z\s0-9]*$/;
     let validatePrice = /^[0-9]+(\.[0-9]+)?$/;
 
-    const FileSelection = {
-        dvd : "backend/dvdClass.php",
-        furniture : "backend/Furni.php",
-        book : "backend/bookClass.php"
-    }
-
     //Function check for correct input with .test() call
     //If it returns 'true' it proceedss with further validation of additional fields that change dynamically.
     //When all fields have passed validation function begins to POST FormData to PHP file for backend work.
     if(validate.test(sku) && validate.test(name) && validatePrice.test(price)){
         if(validateAdditional()){
             let xml = new XMLHttpRequest();
-            xml.open("POST", FileSelection[this.switcher], true);
+            xml.open("POST", "index.php", true);
             xml.onload = () => {
                 if(xml.readyState == 4 && xml.status == 200){
                     window.location.replace("productList.php");
